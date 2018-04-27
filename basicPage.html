@@ -18,14 +18,14 @@
 <div></div>
 <script>
     var datapath = "data/Sheet_4.csv";
+    //    var datapath = "data/Sheet4.csv";
     //    var datapath = "data/Cancer-Waiting-Times-2016-17.csv"
-    //    var datapath = "data/authors.csv"
     var barwidth = 10;
     var barmargin = 10;
-    var width = 7000;
-    var height = 3500;
-    var margin = 100;
-    var chartHeight = 1000;
+    var width = 800;
+    var height = 1100;
+    var margin = 50;
+    var chartHeight = 500;
 
 
     d3.csv(datapath, function (error, data) {
@@ -33,35 +33,92 @@
         var myData = data;
 
         var extentTT = d3.extent(myData, function (d) {
-            return d.TOTAL_TREATED * 0.002;
+            return d.TOTAL_TREATED * 0.001;
+        });
+        var extentP = d3.extent(myData, function (d) {
+            return d.Avg_PERFORMANCE
         });
 
         var minTT = d3.min(extentTT);
         var maxTT = d3.max(extentTT);
+        var maxP = d3.max(extentP);
 
         var scale = d3.scaleLinear()
             .domain([0, maxTT])
             .range([0, chartHeight]);
 
-        var plot_svg = d3.select("div")
+        var cScale = d3.scaleLinear()
+            .domain([extentP])
+            .range([0, chartHeight]);
+
+        var yaxisScale1 = d3.scaleLinear()
+            .domain([0, maxTT])
+            .range([chartHeight + margin, margin]);
+        var yaxisScale2 = d3.scaleLinear()
+            .domain([0, maxP])
+            .range([chartHeight + margin, margin]);
+
+        var y_axis1 = d3.axisLeft(yaxisScale1);
+        var y_axis2 = d3.axisRight(yaxisScale2);
+
+        var colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+
+        d3.select("div")
             .append("svg")
             .attr("id", "plot")
             .attr("width", width)
             .attr("height", height);
-        plot_svg.selectAll("rect")
+
+        d3.select("svg")
+            .selectAll("g")
             .data(myData)
             .enter()
+            .append("g")
             .append("rect")
             .attr("width", barwidth)
             .attr("height", function (d) {
-                return scale(d.TOTAL_TREATED * 0.002);
+                return scale(d.TOTAL_TREATED * 0.001);
             })
             .attr("x", function (d, i) {
-                return i * (barwidth + barmargin) + barmargin;
+                return i * (barwidth + barmargin) + margin;
             })
             .attr("y", function (d, i) {
-                return chartHeight + margin - scale(d.TOTAL_TREATED * 0.002);
+                return chartHeight + margin - scale(d.TOTAL_TREATED * 0.001);
             })
+            .style("fill", function (d) {
+                return colorScale(d.CANCER_TYPE);
+            });
+
+        d3.selectAll("g")
+            .append("circle")
+            .attr("cx", function (d, i) {
+                return i * (barwidth + barmargin) + margin;
+            })
+            .attr("cy", function (d) {
+                return chartHeight + margin - cScale(d.Avg_PERFORMANCE);
+            })
+            .attr("r", 3)
+            .style("fill", "orange");
+
+        d3.selectAll("g")
+            .append("text")
+            .text(function (d) {
+                return d.CANCER_TYPE;
+            })
+            .attr("transform", function (d, i) {
+                return "translate (" + (margin + i * (barwidth + barmargin)) + "," +
+                    (chartHeight + margin + barmargin) + ") rotate(90)";
+            });
+
+        d3.select("svg")
+            .append("g")
+            .attr("transform", "translate (" + (margin - barmargin) + ", 0")
+            .call(y_axis1);
+
+        d3.select("svg")
+            .append("g")
+            .attr("transform", "translate (" + (margin - barmargin) + ", 0")
+            .call(y_axis2);
     });
 </script>
 

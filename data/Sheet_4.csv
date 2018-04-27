@@ -1,71 +1,36 @@
-CANCER_TYPE,Measure_Names,STANDARD,Avg_PERFORMANCE,TOTAL_TREATED
-Suspected acute leukaemia,Avg. PERFORMANCE,2WW,0.962174941,183
-Suspected brain/central nervous system tumours,Avg. PERFORMANCE,2WW,0.950691788,10055
-Suspected breast cancer,Avg. PERFORMANCE,2WW,0.942574039,331304
-Suspected children's cancer,Avg. PERFORMANCE,2WW,0.9543458,9361
-Suspected gynaecological cancer,Avg. PERFORMANCE,2WW,0.953094997,170587
-Suspected haematological malignancies (excluding acute leukaemia),Avg. PERFORMANCE,2WW,0.960721769,17775
-Suspected head & neck cancer,Avg. PERFORMANCE,2WW,0.952021689,176945
-Suspected lower gastrointestinal cancer,Avg. PERFORMANCE,2WW,0.924925216,301455
-Suspected lung cancer,Avg. PERFORMANCE,2WW,0.960406586,64451
-Suspected other cancer,Avg. PERFORMANCE,2WW,0.948847496,2018
-Suspected sarcoma,Avg. PERFORMANCE,2WW,0.941009995,10377
-Suspected skin cancer,Avg. PERFORMANCE,2WW,0.929837122,371805
-Suspected testicular cancer,Avg. PERFORMANCE,2WW,0.972886443,10429
-Suspected upper gastrointestinal cancer,Avg. PERFORMANCE,2WW,0.924606541,189503
-Suspected urological malignancies (excluding testicular),Avg. PERFORMANCE,2WW,0.943454075,201055
-Exhibited (non-cancer) breast symptoms - cancer not initially suspected,Avg. PERFORMANCE,2WW Breast,0.92381584,209776
-ALL CANCERS,Avg. PERFORMANCE,31 Days,0.978897299,284149
-Breast,Avg. PERFORMANCE,31 Days,0.990110916,46408
-Lower Gastrointestinal,Avg. PERFORMANCE,31 Days,0.984260574,30002
-Lung,Avg. PERFORMANCE,31 Days,0.990341146,31111
-Other,Avg. PERFORMANCE,31 Days,0.986117744,75554
-Skin,Avg. PERFORMANCE,31 Days,0.97315643,46733
-Urological,Avg. PERFORMANCE,31 Days,0.953419383,54341
-ANTI-CANCER DRUG REGIMEN,Avg. PERFORMANCE,31 Days Sub (Drugs),0.995184563,91427
-RADIOTHERAPY,Avg. PERFORMANCE,31 Days Sub (Radio),0.974304465,94343
-SURGERY,Avg. PERFORMANCE,31 Days Sub (Surgery),0.958336966,54409
-ALL CANCERS,Avg. PERFORMANCE,62 Days,0.810815121,145628
-Breast,Avg. PERFORMANCE,62 Days,0.950613691,22852
-Lower Gastrointestinal,Avg. PERFORMANCE,62 Days,0.716479818,14188
-Lung,Avg. PERFORMANCE,62 Days,0.736836953,13271
-Other,Avg. PERFORMANCE,62 Days,0.758047613,36117
-Skin,Avg. PERFORMANCE,62 Days,0.926550982,28331
-Urological (Excluding Testicular),Avg. PERFORMANCE,62 Days,0.732717346,33802
-ALL CANCERS,Avg. PERFORMANCE,62 Days (Consultant),0.879873841,26624
-ALL CANCERS,Avg. PERFORMANCE,62 Days (Screening),0.895478618,21055
-Suspected urological malignancies (excluding testicular),TOTAL TREATED,2WW,0.943454075,201055
-Suspected upper gastrointestinal cancer,TOTAL TREATED,2WW,0.924606541,189503
-Suspected testicular cancer,TOTAL TREATED,2WW,0.972886443,10429
-Suspected skin cancer,TOTAL TREATED,2WW,0.929837122,371805
-Suspected sarcoma,TOTAL TREATED,2WW,0.941009995,10377
-Suspected other cancer,TOTAL TREATED,2WW,0.948847496,2018
-Suspected lung cancer,TOTAL TREATED,2WW,0.960406586,64451
-Suspected lower gastrointestinal cancer,TOTAL TREATED,2WW,0.924925216,301455
-Suspected head & neck cancer,TOTAL TREATED,2WW,0.952021689,176945
-Suspected haematological malignancies (excluding acute leukaemia),TOTAL TREATED,2WW,0.960721769,17775
-Suspected gynaecological cancer,TOTAL TREATED,2WW,0.953094997,170587
-Suspected children's cancer,TOTAL TREATED,2WW,0.9543458,9361
-Suspected breast cancer,TOTAL TREATED,2WW,0.942574039,331304
-Suspected brain/central nervous system tumours,TOTAL TREATED,2WW,0.950691788,10055
-Suspected acute leukaemia,TOTAL TREATED,2WW,0.962174941,183
-Exhibited (non-cancer) breast symptoms - cancer not initially suspected,TOTAL TREATED,2WW Breast,0.92381584,209776
-Urological,TOTAL TREATED,31 Days,0.953419383,54341
-Skin,TOTAL TREATED,31 Days,0.97315643,46733
-Other,TOTAL TREATED,31 Days,0.986117744,75554
-Lung,TOTAL TREATED,31 Days,0.990341146,31111
-Lower Gastrointestinal,TOTAL TREATED,31 Days,0.984260574,30002
-Breast,TOTAL TREATED,31 Days,0.990110916,46408
-ALL CANCERS,TOTAL TREATED,31 Days,0.978897299,284149
-ANTI-CANCER DRUG REGIMEN,TOTAL TREATED,31 Days Sub (Drugs),0.995184563,91427
-RADIOTHERAPY,TOTAL TREATED,31 Days Sub (Radio),0.974304465,94343
-SURGERY,TOTAL TREATED,31 Days Sub (Surgery),0.958336966,54409
-Urological (Excluding Testicular),TOTAL TREATED,62 Days,0.732717346,33802
-Skin,TOTAL TREATED,62 Days,0.926550982,28331
-Other,TOTAL TREATED,62 Days,0.758047613,36117
-Lung,TOTAL TREATED,62 Days,0.736836953,13271
-Lower Gastrointestinal,TOTAL TREATED,62 Days,0.716479818,14188
-Breast,TOTAL TREATED,62 Days,0.950613691,22852
-ALL CANCERS,TOTAL TREATED,62 Days,0.810815121,145628
-ALL CANCERS,TOTAL TREATED,62 Days (Consultant),0.879873841,26624
-ALL CANCERS,TOTAL TREATED,62 Days (Screening),0.895478618,21055
+CANCER_TYPE,STANDARD,Avg_PERFORMANCE,TOTAL_TREATED
+Suspected acute leukaemia,2WW,0.962174941,183
+Suspected brain/central nervous system tumours,2WW,0.950691788,10055
+Suspected breast cancer,2WW,0.942574039,331304
+Suspected children's cancer,2WW,0.9543458,9361
+Suspected gynaecological cancer,2WW,0.953094997,170587
+Suspected haematological malignancies (excluding acute leukaemia),2WW,0.960721769,17775
+Suspected head & neck cancer,2WW,0.952021689,176945
+Suspected lower gastrointestinal cancer,2WW,0.924925216,301455
+Suspected lung cancer,2WW,0.960406586,64451
+Suspected other cancer,2WW,0.948847496,2018
+Suspected sarcoma,2WW,0.941009995,10377
+Suspected skin cancer,2WW,0.929837122,371805
+Suspected testicular cancer,2WW,0.972886443,10429
+Suspected upper gastrointestinal cancer,2WW,0.924606541,189503
+Suspected urological malignancies (excluding testicular),2WW,0.943454075,201055
+Exhibited (non-cancer) breast symptoms - cancer not initially suspected,2WW Breast,0.92381584,209776
+ALL CANCERS,31 Days,0.978897299,284149
+Breast,31 Days,0.990110916,46408
+Lower Gastrointestinal,31 Days,0.984260574,30002
+Lung,31 Days,0.990341146,31111
+Other,31 Days,0.986117744,75554
+Skin,31 Days,0.97315643,46733
+Urological,31 Days,0.953419383,54341
+ANTI-CANCER DRUG REGIMEN,31 Days Sub (Drugs),0.995184563,91427
+RADIOTHERAPY,31 Days Sub (Radio),0.974304465,94343
+SURGERY,31 Days Sub (Surgery),0.958336966,54409
+ALL CANCERS,62 Days,0.810815121,145628
+Breast,62 Days,0.950613691,22852
+Lower Gastrointestinal,62 Days,0.716479818,14188
+Lung,62 Days,0.736836953,13271
+Other,62 Days,0.758047613,36117
+Skin,62 Days,0.926550982,28331
+Urological (Excluding Testicular),62 Days,0.732717346,33802
+ALL CANCERS,62 Days (Consultant),0.879873841,26624
+ALL CANCERS,62 Days (Screening),0.895478618,21055
