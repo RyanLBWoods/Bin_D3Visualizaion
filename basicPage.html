@@ -1,0 +1,71 @@
+<html>
+
+<head>
+
+    <!-- we want to use D3, so this is where D3.js gets called-->
+    <script type="text/javascript" src="libraries/d3/d3.min.js"></script>
+
+    <!--title of the webpage-->
+    <title> D3</title>
+
+</head>
+
+<body>
+
+<!-- simple text heading-->
+<h2>D3</h2>
+
+<div></div>
+<script>
+    var datapath = "data/Sheet_4.csv";
+    //    var datapath = "data/Cancer-Waiting-Times-2016-17.csv"
+    //    var datapath = "data/authors.csv"
+    var barwidth = 10;
+    var barmargin = 10;
+    var width = 7000;
+    var height = 3500;
+    var margin = 100;
+    var chartHeight = 1000;
+
+
+    d3.csv(datapath, function (error, data) {
+        console.log(data);
+        var myData = data;
+
+        var extentTT = d3.extent(myData, function (d) {
+            return d.TOTAL_TREATED * 0.002;
+        });
+
+        var minTT = d3.min(extentTT);
+        var maxTT = d3.max(extentTT);
+
+        var scale = d3.scaleLinear()
+            .domain([0, maxTT])
+            .range([0, chartHeight]);
+
+        var plot_svg = d3.select("div")
+            .append("svg")
+            .attr("id", "plot")
+            .attr("width", width)
+            .attr("height", height);
+        plot_svg.selectAll("rect")
+            .data(myData)
+            .enter()
+            .append("rect")
+            .attr("width", barwidth)
+            .attr("height", function (d) {
+                return scale(d.TOTAL_TREATED * 0.002);
+            })
+            .attr("x", function (d, i) {
+                return i * (barwidth + barmargin) + barmargin;
+            })
+            .attr("y", function (d, i) {
+                return chartHeight + margin - scale(d.TOTAL_TREATED * 0.002);
+            })
+    });
+</script>
+
+
+</body>
+
+</html>
