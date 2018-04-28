@@ -38,6 +38,10 @@
             return d.Avg_PERFORMANCE * 100;
         });
 
+        var extentStandard = d3.extent((myData, function (d) {
+            return d.STANDARD;
+        }))
+
         var minTT = d3.min(extentTT);
         var maxTT = d3.max(extentTT);
         var maxP = d3.max(extentP);
@@ -49,6 +53,13 @@
         var cScale = d3.scaleLinear()
             .domain([0, maxP])
             .range([0, chartHeight]);
+
+        var xScale = d3.scaleOrdinal()
+            .domain(["2WW", "31 Days", "62 Days"])
+            .range([margin, margin + 16 * (barwidth + barmargin), margin + 26 * (barwidth + barmargin),
+                margin + 35 * (barwidth + barmargin)]);
+
+        var x_axis = d3.axisTop(xScale);
 
         var yaxisScale1 = d3.scaleLinear()
             .domain([0, maxTT])
@@ -137,7 +148,8 @@
             .on("mouseout", function (d) {
                 d3.select(this)
                     .style("stroke", "white");
-                tooltip.style("opacity", 0.0);
+                tooltip.style("opacity", 0.0)
+                    .style("left", "1000");
             })
             .on("mouseover", function (d) {
                 tooltip.html("Cancer Type: " + d.CANCER_TYPE + "<br/>"
@@ -165,11 +177,20 @@
 
         d3.select("svg")
             .append("g")
+            .attr("transform", "translate (0, " + (margin - 10) + ")")
+            .call(x_axis)
+            .append("text")
+            .text("Standard")
+            .attr("class", "label")
+            .attr("transform", "translate (" + ((margin + 35 * (barwidth + barmargin)) / 2) + "," + (-30) + ")");
+
+        d3.select("svg")
+            .append("g")
             .attr("transform", "translate (" + (margin - barmargin) + ", 0)")
             .call(y_axis1)
             .append("text")
             .text("Total Treated (K)")
-            .style("fill", "black")
+            .attr("class", "label")
             .attr("transform", "translate (" + (-(2 * barwidth)) + ", " + (chartHeight / 2) + ") rotate(-90)");
 
         d3.select("svg")
@@ -178,7 +199,7 @@
             .call(y_axis2)
             .append("text")
             .text("Avg. Performance (%)")
-            .style("fill", "black")
+            .attr("class", "label")
             .attr("transform", "translate (" + (barwidth + 2 * barmargin) + ", " + (chartHeight / 2) + ") rotate(90)");
     });
 </script>

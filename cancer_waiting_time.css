@@ -6,3 +6,7 @@
     border-width: thin;
     background-color: white;
 }
+.label{
+    font-size: 13px;
+    fill: black;
+}
