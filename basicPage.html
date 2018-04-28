@@ -6,20 +6,18 @@
     <script type="text/javascript" src="libraries/d3/d3.min.js"></script>
 
     <!--title of the webpage-->
-    <title> D3</title>
+    <title>D3</title>
 
 </head>
 
 <body>
 
 <!-- simple text heading-->
-<h2>D3</h2>
+<h2>Cancer Waiting Time</h2>
 
 <div></div>
 <script>
     var datapath = "data/Sheet_4.csv";
-    //    var datapath = "data/Sheet4.csv";
-    //    var datapath = "data/Cancer-Waiting-Times-2016-17.csv"
     var barwidth = 10;
     var barmargin = 10;
     var width = 800;
@@ -36,7 +34,7 @@
             return d.TOTAL_TREATED * 0.001;
         });
         var extentP = d3.extent(myData, function (d) {
-            return d.Avg_PERFORMANCE
+            return d.Avg_PERFORMANCE * 100;
         });
 
         var minTT = d3.min(extentTT);
@@ -48,7 +46,7 @@
             .range([0, chartHeight]);
 
         var cScale = d3.scaleLinear()
-            .domain([extentP])
+            .domain([0, maxP])
             .range([0, chartHeight]);
 
         var yaxisScale1 = d3.scaleLinear()
@@ -61,7 +59,7 @@
         var y_axis1 = d3.axisLeft(yaxisScale1);
         var y_axis2 = d3.axisRight(yaxisScale2);
 
-        var colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+        var colorScale = d3.scaleOrdinal(d3.schemeCategory20);
 
         d3.select("div")
             .append("svg")
@@ -95,10 +93,10 @@
                 return i * (barwidth + barmargin) + margin;
             })
             .attr("cy", function (d) {
-                return chartHeight + margin - cScale(d.Avg_PERFORMANCE);
+                return chartHeight + margin - cScale(d.Avg_PERFORMANCE * 100);
             })
             .attr("r", 3)
-            .style("fill", "orange");
+            .style("fill", "blue");
 
         d3.selectAll("g")
             .append("text")
@@ -112,13 +110,21 @@
 
         d3.select("svg")
             .append("g")
-            .attr("transform", "translate (" + (margin - barmargin) + ", 0")
-            .call(y_axis1);
+            .attr("transform", "translate (" + (margin - barmargin) + ", 0)")
+            .call(y_axis1)
+            .append("text")
+            .text("Total Treated (K)")
+            .style("fill", "black")
+            .attr("transform", "translate (" + (-(barwidth + 2 * barmargin)) + ", " + (chartHeight / 2) + ") rotate(-90)");
 
         d3.select("svg")
             .append("g")
-            .attr("transform", "translate (" + (margin - barmargin) + ", 0")
-            .call(y_axis2);
+            .attr("transform", "translate (" + (margin + 35 * (barwidth + barmargin)) + ", 0)")
+            .call(y_axis2)
+            .append("text")
+            .text("Avg. Performance (%)")
+            .style("fill", "black")
+            .attr("transform", "translate (" + (barwidth + 2 * barmargin) +  ", " + (chartHeight / 2) + ") rotate(90)");
     });
 </script>
 
