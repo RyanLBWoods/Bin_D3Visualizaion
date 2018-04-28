@@ -4,6 +4,7 @@
 
     <!-- we want to use D3, so this is where D3.js gets called-->
     <script type="text/javascript" src="libraries/d3/d3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="cancer_waiting_time.css">
 
     <!--title of the webpage-->
     <title>D3</title>
@@ -13,13 +14,13 @@
 <body>
 
 <!-- simple text heading-->
-<h2>Cancer Waiting Time</h2>
+<h1>Cancer Waiting Time</h1>
 
 <div></div>
 <script>
     var datapath = "data/Sheet_4.csv";
-    var barwidth = 10;
-    var barmargin = 10;
+    var barwidth = 15;
+    var barmargin = 5;
     var width = 800;
     var height = 1100;
     var margin = 50;
@@ -59,7 +60,13 @@
         var y_axis1 = d3.axisLeft(yaxisScale1);
         var y_axis2 = d3.axisRight(yaxisScale2);
 
-        var colorScale = d3.scaleOrdinal(d3.schemeCategory20);
+        var colorScale10 = d3.scaleOrdinal(d3.schemeCategory10);
+        var colorScale20 = d3.scaleOrdinal(d3.schemeCategory20);
+
+        var tooltip = d3.select("body")
+            .append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0.0);
 
         d3.select("div")
             .append("svg")
@@ -84,19 +91,67 @@
                 return chartHeight + margin - scale(d.TOTAL_TREATED * 0.001);
             })
             .style("fill", function (d) {
-                return colorScale(d.CANCER_TYPE);
+                return colorScale20(d.CANCER_TYPE);
+            })
+            .on("mouseenter", function (d, i) {
+                d3.select(this)
+                    .style("stroke", "black")
+                    .style("strokeWidth", "2px");
+            })
+            .on("mouseout", function (d) {
+                d3.select(this)
+                    .style("stroke", "white");
+                tooltip.style("opacity", 0.0);
+            })
+            .on("mouseover", function (d) {
+                tooltip.html("Cancer Type: " + d.CANCER_TYPE + "<br/>"
+                    + "Standard:         " + d.STANDARD + "<br/>"
+                    + "Total Treated:    " + d.TOTAL_TREATED + "<br/>"
+                    + "Avg. Performance: " + d.Avg_PERFORMANCE)
+                    .style("left", (d3.event.pageX) + "px")
+                    .style("top", (d3.event.pageY + 20) + "px")
+                    .style("opacity", 1.0);
+            })
+            .on("mousemove", function (d) {
+                tooltip.style("left", (d3.event.pageX) + "px")
+                    .style("top", (d3.event.pageY + 20) + "px");
             });
 
         d3.selectAll("g")
             .append("circle")
             .attr("cx", function (d, i) {
-                return i * (barwidth + barmargin) + margin;
+                return i * (barwidth + barmargin) + margin + barwidth / 2;
             })
             .attr("cy", function (d) {
                 return chartHeight + margin - cScale(d.Avg_PERFORMANCE * 100);
             })
-            .attr("r", 3)
-            .style("fill", "blue");
+            .attr("r", 4)
+            .style("fill", function (d) {
+                return colorScale10(d.STANDARD);
+            })
+            .on("mouseenter", function (d, i) {
+                d3.select(this)
+                    .style("stroke", "black")
+                    .style("strokeWidth", "2px");
+            })
+            .on("mouseout", function (d) {
+                d3.select(this)
+                    .style("stroke", "white");
+                tooltip.style("opacity", 0.0);
+            })
+            .on("mouseover", function (d) {
+                tooltip.html("Cancer Type: " + d.CANCER_TYPE + "<br/>"
+                    + "Standard:         " + d.STANDARD + "<br/>"
+                    + "Total Treated:    " + d.TOTAL_TREATED + "<br/>"
+                    + "Avg. Performance: " + d.Avg_PERFORMANCE)
+                    .style("left", (d3.event.pageX) + "px")
+                    .style("top", (d3.event.pageY + 20) + "px")
+                    .style("opacity", 1.0);
+            })
+            .on("mousemove", function (d) {
+                tooltip.style("left", (d3.event.pageX) + "px")
+                    .style("top", (d3.event.pageY + 20) + "px");
+            });
 
         d3.selectAll("g")
             .append("text")
@@ -115,7 +170,7 @@
             .append("text")
             .text("Total Treated (K)")
             .style("fill", "black")
-            .attr("transform", "translate (" + (-(barwidth + 2 * barmargin)) + ", " + (chartHeight / 2) + ") rotate(-90)");
+            .attr("transform", "translate (" + (-(2 * barwidth)) + ", " + (chartHeight / 2) + ") rotate(-90)");
 
         d3.select("svg")
             .append("g")
@@ -124,7 +179,7 @@
             .append("text")
             .text("Avg. Performance (%)")
             .style("fill", "black")
-            .attr("transform", "translate (" + (barwidth + 2 * barmargin) +  ", " + (chartHeight / 2) + ") rotate(90)");
+            .attr("transform", "translate (" + (barwidth + 2 * barmargin) + ", " + (chartHeight / 2) + ") rotate(90)");
     });
 </script>
 
