@@ -1,22 +1,19 @@
 <html>
 
 <head>
-
-    <!-- we want to use D3, so this is where D3.js gets called-->
+    <!--Call external files-->
     <script type="text/javascript" src="libraries/d3/d3.min.js"></script>
     <link rel="stylesheet" type="text/css" href="cancer_waiting_time.css">
-
-    <!--title of the webpage-->
+    <!--Title-->
     <title>D3</title>
-
 </head>
 
 <body>
-
-<!-- simple text heading-->
+<!--Heading-->
 <h1>Cancer Waiting Time</h1>
 
 <div></div>
+
 <script>
     var datapath = "data/Sheet_4.csv";
     var barwidth = 15;
@@ -26,65 +23,57 @@
     var margin = 50;
     var chartHeight = 500;
 
-
     d3.csv(datapath, function (error, data) {
+        // Load data
         console.log(data);
         var myData = data;
-
         var extentTT = d3.extent(myData, function (d) {
             return d.TOTAL_TREATED * 0.001;
         });
         var extentP = d3.extent(myData, function (d) {
             return d.Avg_PERFORMANCE * 100;
         });
-
-        var extentStandard = d3.extent((myData, function (d) {
-            return d.STANDARD;
-        }));
-
-        var minTT = d3.min(extentTT);
+        // Scale X and Y axis
         var maxTT = d3.max(extentTT);
         var maxP = d3.max(extentP);
-
+        // Scale for Total Treated
         var scale = d3.scaleLinear()
             .domain([0, maxTT])
             .range([0, chartHeight]);
-
+        // Scale for Avg. Performance
         var cScale = d3.scaleLinear()
             .domain([0, maxP])
             .range([0, chartHeight]);
-
+        // Scale for Standard category
         var xScale = d3.scaleOrdinal()
             .domain(["2WW", "31 Days", "62 Days"])
             .range([margin, margin + 16 * (barwidth + barmargin), margin + 26 * (barwidth + barmargin),
                 margin + 35 * (barwidth + barmargin)]);
-
-        var x_axis = d3.axisTop(xScale);
-
         var yaxisScale1 = d3.scaleLinear()
             .domain([0, maxTT])
             .range([chartHeight + margin, margin]);
         var yaxisScale2 = d3.scaleLinear()
             .domain([0, maxP])
             .range([chartHeight + margin, margin]);
-
+        // Define axis
+        var x_axis = d3.axisTop(xScale);
         var y_axis1 = d3.axisLeft(yaxisScale1);
         var y_axis2 = d3.axisRight(yaxisScale2);
-
+        // Color scale
         var colorScale10 = d3.scaleOrdinal(d3.schemeCategory10);
         var colorScale20 = d3.scaleOrdinal(d3.schemeCategory20);
-
+        // Mouse tooltip
         var tooltip = d3.select("body")
             .append("div")
             .attr("class", "tooltip")
             .style("opacity", 0.0);
-
+        // Define SVG
         d3.select("div")
             .append("svg")
             .attr("id", "plot")
             .attr("width", width)
             .attr("height", height);
-
+        // Create Total Treated bar chart
         d3.select("svg")
             .selectAll("g")
             .data(myData)
@@ -112,9 +101,12 @@
             .on("mouseout", function (d) {
                 d3.select(this)
                     .style("stroke", "white");
-                tooltip.style("opacity", 0.0);
+                // Vanish tooltip
+                tooltip.style("opacity", 0.0)
+                    .style("top", "5000");
             })
             .on("mouseover", function (d) {
+                // Create tooltip
                 tooltip.html("Cancer Type: " + d.CANCER_TYPE + "<br/>"
                     + "Standard:         " + d.STANDARD + "<br/>"
                     + "Total Treated:    " + d.TOTAL_TREATED + "<br/>"
@@ -124,10 +116,11 @@
                     .style("opacity", 1.0);
             })
             .on("mousemove", function (d) {
+                // Tooltip moves with mouse
                 tooltip.style("left", (d3.event.pageX + 10) + "px")
                     .style("top", (d3.event.pageY + 20) + "px");
             });
-
+        // Plot Avg. Performance scatter plot
         d3.selectAll("g")
             .append("circle")
             .attr("cx", function (d, i) {
@@ -148,10 +141,12 @@
             .on("mouseout", function (d) {
                 d3.select(this)
                     .style("stroke", "white");
+                // Vanish tooltip
                 tooltip.style("opacity", 0.0)
                     .style("top", "5000");
             })
             .on("mouseover", function (d) {
+                // Create tooltip
                 tooltip.html("Cancer Type: " + d.CANCER_TYPE + "<br/>"
                     + "Standard:         " + d.STANDARD + "<br/>"
                     + "Total Treated:    " + d.TOTAL_TREATED + "<br/>"
@@ -161,10 +156,11 @@
                     .style("opacity", 1.0);
             })
             .on("mousemove", function (d) {
+                // Tooltip moves with mouse
                 tooltip.style("left", (d3.event.pageX + 10) + "px")
                     .style("top", (d3.event.pageY + 20) + "px");
             });
-
+        // Cancer type axis
         d3.selectAll("g")
             .append("text")
             .text(function (d) {
@@ -174,7 +170,7 @@
                 return "translate (" + (margin + i * (barwidth + barmargin)) + "," +
                     (chartHeight + margin + barmargin) + ") rotate(90)";
             });
-
+        // Standard axis
         d3.select("svg")
             .append("g")
             .attr("transform", "translate (0, " + (margin - 10) + ")")
@@ -183,7 +179,7 @@
             .text("Standard")
             .attr("class", "label")
             .attr("transform", "translate (" + ((margin + 35 * (barwidth + barmargin)) / 2) + "," + (-30) + ")");
-
+        // Total Treated axis
         d3.select("svg")
             .append("g")
             .attr("transform", "translate (" + (margin - barmargin) + ", 0)")
@@ -192,7 +188,7 @@
             .text("Total Treated (K)")
             .attr("class", "label")
             .attr("transform", "translate (" + (-(2 * barwidth)) + ", " + (chartHeight / 2) + ") rotate(-90)");
-
+        // Avg. Performance axis
         d3.select("svg")
             .append("g")
             .attr("transform", "translate (" + (margin + 35 * (barwidth + barmargin)) + ", 0)")
@@ -203,8 +199,5 @@
             .attr("transform", "translate (" + (barwidth + 2 * barmargin) + ", " + (chartHeight / 2) + ") rotate(90)");
     });
 </script>
-
-
-</body>
-
+</body><!---->
 </html>
