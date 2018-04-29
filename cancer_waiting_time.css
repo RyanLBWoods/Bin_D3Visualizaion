@@ -6,7 +6,12 @@
     border-width: thin;
     background-color: white;
 }
-.label{
+
+.label {
     font-size: 13px;
     fill: black;
+}
+
+.linkBtn {
+    font-size: 14px;
 }
