@@ -40,7 +40,7 @@
 
         var extentStandard = d3.extent((myData, function (d) {
             return d.STANDARD;
-        }))
+        }));
 
         var minTT = d3.min(extentTT);
         var maxTT = d3.max(extentTT);
@@ -119,12 +119,12 @@
                     + "Standard:         " + d.STANDARD + "<br/>"
                     + "Total Treated:    " + d.TOTAL_TREATED + "<br/>"
                     + "Avg. Performance: " + d.Avg_PERFORMANCE)
-                    .style("left", (d3.event.pageX) + "px")
+                    .style("left", (d3.event.pageX + 10) + "px")
                     .style("top", (d3.event.pageY + 20) + "px")
                     .style("opacity", 1.0);
             })
             .on("mousemove", function (d) {
-                tooltip.style("left", (d3.event.pageX) + "px")
+                tooltip.style("left", (d3.event.pageX + 10) + "px")
                     .style("top", (d3.event.pageY + 20) + "px");
             });
 
@@ -149,19 +149,19 @@
                 d3.select(this)
                     .style("stroke", "white");
                 tooltip.style("opacity", 0.0)
-                    .style("left", "1000");
+                    .style("top", "5000");
             })
             .on("mouseover", function (d) {
                 tooltip.html("Cancer Type: " + d.CANCER_TYPE + "<br/>"
                     + "Standard:         " + d.STANDARD + "<br/>"
                     + "Total Treated:    " + d.TOTAL_TREATED + "<br/>"
                     + "Avg. Performance: " + d.Avg_PERFORMANCE)
-                    .style("left", (d3.event.pageX) + "px")
+                    .style("left", (d3.event.pageX + 10) + "px")
                     .style("top", (d3.event.pageY + 20) + "px")
                     .style("opacity", 1.0);
             })
             .on("mousemove", function (d) {
-                tooltip.style("left", (d3.event.pageX) + "px")
+                tooltip.style("left", (d3.event.pageX + 10) + "px")
                     .style("top", (d3.event.pageY + 20) + "px");
             });
 
