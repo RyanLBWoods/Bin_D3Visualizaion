@@ -11,7 +11,10 @@
 <body>
 <!--Heading-->
 <h1>Cancer Waiting Time</h1>
-
+<p>170008965</p>
+<button class="linkBtn" type="button" onclick="javascript:window.location.href='project_webpage.html'">
+    Back
+</button>
 <div></div>
 
 <script>
@@ -100,10 +103,10 @@
             })
             .on("mouseout", function (d) {
                 d3.select(this)
-                    .style("stroke", "white");
+                    .style("stroke", "None");
                 // Vanish tooltip
                 tooltip.style("opacity", 0.0)
-                    .style("top", "5000");
+                    .style("left", "1000");
             })
             .on("mouseover", function (d) {
                 // Create tooltip
@@ -140,10 +143,10 @@
             })
             .on("mouseout", function (d) {
                 d3.select(this)
-                    .style("stroke", "white");
+                    .style("stroke", "None");
                 // Vanish tooltip
                 tooltip.style("opacity", 0.0)
-                    .style("top", "5000");
+                    .style("left", "1000");
             })
             .on("mouseover", function (d) {
                 // Create tooltip
