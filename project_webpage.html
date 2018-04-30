@@ -10,7 +10,7 @@
 <h1>Cancer Waiting Time</h1>
 <p>170008965</p>
 <button class="linkBtn" type="button" onclick="javascript:window.location.href='cancer_waiting_time.html'">
-    Visualization
+    Show Visualization
 </button>
 <h2>Data & Question</h2>
 <h4>Question:<br>"Does the performance tend to be low if the number of total treated patients is too big?" </h4>
@@ -25,30 +25,52 @@
     percentage of patients being treated within standard waiting time, and the other is "Suspected" which indicating if
     the cancer if suspected or diagnosed.
 </p>
-<h2>Description of Visualization</h2>
+<p>
+    The key features used in visualization were "Cancer Type", "Standard", "Total Treated", "Suspected" and
+    "Performance". "Total Treated" in the chart was the sum of total treated number of different cancer type;
+    "Performance" for scatter plot was the average value of each cancer type. The data was processed by Tableau during
+    sketching. Tableau can do computation like calculating sum or average of certain measurement according to the
+    need of visualization and allow user to export the processed data into a table storing in a CSV file. For example,
+    in this visualization, sum of number of total treated patient of different cancer type was needed to draw the bar
+    chart, Tableau can compute that sum and generate the chart, then user can export the table of data of the chart.
+</p>
+<h2>Description and Implementation of Visualization</h2>
 <p>
     The visualization intended to illustrate if there is a difference of performance between any attributes to see what
     might influence the performance, thus, in addition to the main question, tasks such as "Does the performance tend to
     be low if the cancer was diagnosed but not suspected?" and "Is the performance influenced by the standard waiting
-    time?". The main question to address is comparing numbers with numbers, therefore, associating bar chart and a line
-    graph was considered. Moreover, to address other intended tasks at same time, the idea was grouping the labels of
-    x-axis, that is, put the cancer type which has the same standard waiting time together along the x-axis.
+    time?" was intended. The main question to address was comparing numbers with numbers, therefore, associating bar
+    chart and a line graph was considered at first. Moreover, to address other intended tasks at same time, the idea was
+    grouping the labels of x-axis, that is, put the cancer type which has the same standard waiting time together along
+    the x-axis. However, in the final visualization, line graph was changed to scatter plot as the change of average
+    performance of each cancer type illustrated by line graph could not convey a meaningful trend, each average
+    performance was just a unique attribute of each type of cancer.
 </p>
 <p>
     The total treated number of different cancer type was illustrated in bar chart and the performance was illustrated
-    in scatter plot. The category of standard was labeled in the x-axis at the top. Furthermore, each color of bars
-    indicates a type of cancer and of scatter points indicates a category of standard (including sub-category). It was
-    found that all suspected cancer were under standard of two week waiting which made it easier to address both tasks.
-    Therefore, they were put at the left of the chart and the others were put at the right so that it could be easier to
-    find the difference of performance between suspected and diagnosed cancer by comparing the left and right side of
-    the chart.
+    in scatter plot. The category group of standards was labeled in the x-axis at the top. Furthermore, each color of
+    bars indicates a type of cancer and of scatter points indicates a category of standard (including sub-category). It
+    was found that all suspected cancer was under standard of two week waiting which made it easier to address both
+    tasks (i.e. put all suspected cancer type to one side of the chart, put other two week waiting standard cancer next
+    to them, and then put other types of cancer in the chart in group of standards). Therefore, all suspected cancer was
+    put at the left of the chart and the others were put next to them so that it could be easier to find the difference
+    of performance between suspected and diagnosed cancer by comparing the left and right side of the chart.
 </p>
 <p>
-    To enable the reader to acquire the specific data of each node, a interactive mouse tooltip was developed. When the
-    mouse moves in or over a bar or a scatter point, there will be a tooltip showing the detail data and moving with the
-    mouse.
+    Additionally, to enable the reader to acquire the specific data of each node, an interactive mouse tooltip was
+    developed. When the mouse moves in or over a bar or a scatter point, there will be a tooltip showing the detail data
+    including the sub-category of standard and moving with the mouse. This tooltip was generated when the page is
+    loaded, but its opacity was set to be 0 so that it cannot be seen. When the mouse enters a bar or a point, it will
+    load data of corresponding cancer and its opacity will be set to 1.0 so that readers can see it. To make it move
+    with the mouse, the position of it was set to change with the mouse position, and as its type of position was set to
+    be "absolute", it will not be influenced by other elements of the page.
 </p>
-<h2>Implementation</h2>
 <h2>Insights from the Visualization & Critical Discussion</h2>
+<p>
+    From the visualization, following insight can be acquired:
+</p>
+<p>
+    
+</p>
 </body>
 </html>
