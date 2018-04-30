@@ -1,0 +1,28 @@
+CANCER_TYPE,Avg_PERFORMANCE,TOTAL_TREATED
+Suspected acute leukaemia,0.962174941,183
+Suspected other cancer,0.948847496,2018
+Suspected children's cancer,0.9543458,9361
+Suspected brain/central nervous system tumours,0.950691788,10055
+Suspected sarcoma,0.941009995,10377
+Suspected testicular cancer,0.972886443,10429
+Suspected haematological malignancies (excluding acute leukaemia),0.960721769,17775
+Urological (Excluding Testicular),0.732717346,33802
+Lower Gastrointestinal,0.868490233,44190
+Lung,0.884966531,44382
+Urological,0.953419383,54341
+SURGERY,0.958336966,54409
+Suspected lung cancer,0.960406586,64451
+Breast,0.971465336,69260
+Skin,0.95152539,75064
+ANTI-CANCER DRUG REGIMEN,0.995184563,91427
+RADIOTHERAPY,0.974304465,94343
+Other,0.89264853,111671
+Suspected gynaecological cancer,0.953094997,170587
+Suspected head & neck cancer,0.952021689,176945
+Suspected upper gastrointestinal cancer,0.924606541,189503
+Suspected urological malignancies (excluding testicular),0.943454075,201055
+Exhibited (non-cancer) breast symptoms - cancer not initially suspected,0.92381584,209776
+Suspected lower gastrointestinal cancer,0.924925216,301455
+Suspected breast cancer,0.942574039,331304
+Suspected skin cancer,0.929837122,371805
+ALL CANCERS,0.901727023,477456

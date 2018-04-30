@@ -34,6 +34,10 @@
     in this visualization, sum of number of total treated patient of different cancer type was needed to draw the bar
     chart, Tableau can compute that sum and generate the chart, then user can export the table of data of the chart.
 </p>
+<p>
+    In addition, an extra data table for sorted bar chart was also processed by Tableau and exported to visualize the
+    sorted bar chart.
+</p>
 <h2>Description and Implementation of Visualization</h2>
 <p>
     The visualization intended to illustrate if there is a difference of performance between any attributes to see what
@@ -65,12 +69,49 @@
     with the mouse, the position of it was set to change with the mouse position, and as its type of position was set to
     be "absolute", it will not be influenced by other elements of the page.
 </p>
+<p>
+    Moreover, the bars in the visualization is just in order of standard group but not in a quantitative order of total
+    treated. However, one of the intended task was finding if there is a relation between total treated number and
+    performance. Without sorting the bars, it is hard to find the performance trend. Therefore, a button was add called
+    "Sort" was added. By clicking the button, bars in the chart will be sorted according to the number of total treated
+    patient, meanwhile, the repeated bars which due to different standards will be removed. The implementation of this
+    was by loading a new data table in which the data was sorted by the number of total treated patient, and then redraw
+    the graph. The origin button next to the sort button will refresh the page, the purpose is to change the chart back
+    to the origin one.
+</p>
 <h2>Insights from the Visualization & Critical Discussion</h2>
 <p>
-    From the visualization, following insight can be acquired:
+    From the visualization, following insight regarding the intended tasks can be acquired: <br>
+    &nbsp&nbsp&nbsp&nbsp 1. The number of total treated patient of each cancer type. <br>
+    &nbsp&nbsp&nbsp&nbsp 2. The difference of performance (percentage of patient being treated within standard) between
+    each cancer type. <br>
+    &nbsp&nbsp&nbsp&nbsp 3. The difference of performance between different standards. <br>
+    &nbsp&nbsp&nbsp&nbsp 4. The difference of performance between suspected and diagnosed cancer. <br>
 </p>
 <p>
-    
+    In detail, by viewing the performance, suspected cancers have a higher performance which means that patient having
+    suspected cancer is more likely to be treated within standard waiting time. Moreover, standard of "31 days waiting"
+    including its sub-categories appears to have the highest performance. On the contrast, the average performance of
+    standard of "62 days waiting" including its sub-categories is poor. In addition, by clicking the sort button, the
+    changed graph will show a sorted bar chart associated with average performance. Reader can find there is a slight
+    decrease when the total treated number is ascending which may convey that the performance tends to be poor as the
+    total treated number climbs.
+</p>
+<p>
+    The visualization accomplishes the intended tasks. Although it was trying find correlation between performance and
+    other attributes and the visualization showed it, however, the main question was decided to be "Does the performance
+    tend to be low if the number of total treated patients is too big?", but without click sort button, it was hard to
+    find the trend of performance as number of total treated patient increased, which made the main task look like a
+    secondary task. Moreover, the total treated number of "suspected acute leukaemia" was too small compare to others
+    which made its bar become too short so that the mouse cannot move into the bar and tooltip cannot be generated. One
+    solution to it could be adding a zooming function that when mouse moving close to it, a small window can be created
+    to show a new chart with the enlarged bar only.
+</p>
+<p>
+    Furthermore, the expressiveness and effectiveness were followed, different color maps to different type of cancer
+    and standards, bar chart is a good visualization method for comparing numbers and associating two graphs together
+    can convey the trend that was intended to find. In addition, the implementation was not in an efficient way. As for
+    changing the chart to a sorted chart, the codes were to much repeated parts which hurt the reusability of code.
 </p>
 </body>
 </html>
