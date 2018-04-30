@@ -223,21 +223,22 @@
 
         d3.select("#sort")
             .on("click", function () {
-                update(myData, sortData);
+                sort(myData, sortData);
                 document.getElementById("sort").disabled = true;
             });
     }
 
-    function update(myData, sortData) {
+    function sort(myData, sortData) {
+        // Remove previous chart
         var bars = d3.select("svg")
             .selectAll(".bars")
             .data(myData);
         var axis = d3.select("svg")
             .selectAll(".axis")
             .data(myData);
-
         bars.remove();
         axis.remove();
+        // Draw new chart
         var extentTT = d3.extent(sortData, function (d) {
             return d.TOTAL_TREATED * 0.001;
         });
@@ -247,9 +248,11 @@
         // Scale X and Y axis
         var maxTT = d3.max(extentTT);
         var maxP = d3.max(extentP);
+
         var scale = d3.scaleLinear()
             .domain([0, maxTT])
             .range([0, chartHeight]);
+
         var yaxisScale1 = d3.scaleLinear()
             .domain([0, maxTT])
             .range([chartHeight + margin, margin]);
@@ -266,6 +269,7 @@
 
         // Color scale
         var colorScale20 = d3.scaleOrdinal(d3.schemeCategory20);
+        // Draw new bars
         d3.select("svg")
             .selectAll(".bars")
             .data(sortData)
